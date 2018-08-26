@@ -1,0 +1,12 @@
+#1 832. Flipping an Image
+class Solution(object):
+    def flipAndInvertImage(self, A):
+        count=-1
+        for x in (A):
+            x=x[::-1]
+            for y in range(len(x)):
+                t = abs(x[y] - 1)
+                x[y]=t
+            count = count + 1
+            A[count]=x
+        return(A)
