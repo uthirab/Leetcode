@@ -1,0 +1,9 @@
+prices = [7, 1, 5, 3, 6, 8]
+buying_price = prices[0]
+profit = 0
+for i in range(0, len(prices)):
+    if prices[i] > buying_price:
+        profit = (max(profit, prices[i] - buying_price))
+    else:
+        buying_price = prices[i]
+print(profit)
