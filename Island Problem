@@ -1,0 +1,66 @@
+class Solution:
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        self.row = len(grid)
+        if len(grid)>0:
+            self.col = len(grid[0])
+        else:
+            self.col=0
+        self.graph = grid
+        return (self.mainone(self.row, self.col, self.graph))
+   
+    def check(self, i, j ,visited):
+        #if i >= 0 and i < self.row and j >= 0 and j < self.col:
+        if not visited[i][j] and self.graph[i][j]=='1':
+            visited[i][j]=True
+            self.graph[i][j] = "0"
+            return True
+        return False
+    def neightozero(self,i,j,visited):
+        rowno=(-1,-1,0,0,1,1,0)
+        colno=(0,0,1,1,0,0,-1)
+        for k in range(7):
+            if i+rowno[k]>=0 and j+colno[k]>=0 and i+rowno[k]<self.row and j+colno[k]<self.col:
+                if self.check(i+rowno[k],j+colno[k],visited):
+                     self.neightozero(i+rowno[k],j+colno[k], visited)
+
+    def mainone(self, row, col, graph):
+        visited = [[False for j in range(self.col)] for i in range(self.row)]
+        Island = 0
+        for i in range(self.row):
+            for j in range(self.col):
+                chec=self.check(i, j, visited)
+                if chec:
+                    r=self.neightozero(i,j,visited)
+                    
+                    Island += 1
+        return Island
+
+        
+ '''
+ Number of Islands
+  Go to Discuss
+Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+
+Input:
+11110
+11010
+11000
+00000
+
+Output: 1
+Example 2:
+
+Input:
+11000
+11000
+00100
+00011
+
+Output: 3
+'''
