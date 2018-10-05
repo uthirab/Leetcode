@@ -1,0 +1,38 @@
+ res = [0] * len(temperatures)
+        stack = []
+        for i in range(len(temperatures)-1, -1, -1):
+            while stack and temperatures[stack[-1]] <= temperatures[i]:
+                stack.pop()
+            if not stack:
+                stack.append(i)
+            else:
+                res[i] = stack[-1] - i
+                stack.append(i)
+        return res
+        
+        
+        
+        class Solution:
+    def dailyTemperatures(self, temperatures):
+        result=[0]*len(temperatures)
+        stack=[0]
+        for i in range(len(temperatures)-1,-1,-1):
+            while stack and stack[-1]<=temperatures[i]:
+                print('while'+str(stack))
+                stack.pop()
+            if not stack:
+                stack.append(temperatures[i])
+                print('if1'+str(stack))
+            if stack:
+                result[i]=stack[-1]-i
+                stack.append(temperatures[i])
+                print('if2'+str(stack))
+        return result
+            
+            
+            
+            
+            
+          
+        
+       
