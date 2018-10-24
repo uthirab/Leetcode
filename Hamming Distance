@@ -1,0 +1,32 @@
+class Solution:
+    def hammingDistance(self, x, y):
+        # a="{0:b}".format(x^y).count("1")# works too but has higher runner time
+        # return(a)
+        x_bit=bin(x)[2:]
+        y_bit=bin(y)[2:]
+        zero=max(len(x_bit),len(y_bit))
+        x_b=(zero-len(x_bit))*'0' +x_bit
+        y_b=(zero-len(y_bit))*'0' +y_bit
+        return(sum(x_b[i]!=y_b[i] for i in range(len(x_b))))# comparitively lesser run time
+
+
+
+
+'''The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+
+Given two integers x and y, calculate the Hamming distance.
+
+Note:
+0 ≤ x, y < 231.
+
+Example:
+
+Input: x = 1, y = 4
+
+Output: 2
+
+Explanation:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+       '''
